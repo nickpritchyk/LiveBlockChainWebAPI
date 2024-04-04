@@ -5,7 +5,7 @@ import cors from 'cors'
 import { WebSocket } from 'ws'
 import { router as rateRoutes } from './routes/rateRoutes'
 
-const COIN_API_KEY = '00EAFF8E-292A-4EA1-A828-405B82D34BF1'
+const COIN_API_KEY = ''
 const app: Application = express()
 app.use(cors())
 
