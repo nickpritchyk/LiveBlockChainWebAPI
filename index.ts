@@ -3,9 +3,12 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
 import { WebSocket } from 'ws'
-import { router as rateRoutes } from './routes/rateRoutes'
+import { router as postRoutes } from './routes/postRoutes'
+import mongoose from 'mongoose'
 
 const COIN_API_KEY = ''
+const MONGO_URI = 'mongodb+srv://nickpritchyk:steamboat6@sandbox.bmljo6q.mongodb.net/?retryWrites=true&w=majority&appName=Sandbox/test'
+
 const app: Application = express()
 app.use(cors())
 
@@ -16,9 +19,14 @@ const io = new Server(server, {
     }
 })
 
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        console.log('Connected to MongoDB')
+    })
+    .catch(err => console.log(err))
 
 
-app.use('/api/rates', rateRoutes)
+app.use('/api/posts', postRoutes)
 
 
 
